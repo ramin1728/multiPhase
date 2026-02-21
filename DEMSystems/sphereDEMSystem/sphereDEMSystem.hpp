@@ -126,6 +126,9 @@ public:
 
 	span<uint32> particleId() override;
 
+    /// return the largest diameter of avaiable shapes
+    std::vector<real> shapeDiameters()const override;
+
 	span<real> diameter() override;
 
 	span<real> courseGrainFactor() override;

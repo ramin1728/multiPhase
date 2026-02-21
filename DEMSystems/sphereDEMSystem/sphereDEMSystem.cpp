@@ -170,7 +170,12 @@ pFlow::span<pFlow::uint32> pFlow::sphereDEMSystem::particleId()
     return span<uint32>();
 }
 
-pFlow::span<pFlow::real> pFlow::sphereDEMSystem::diameter() 
+std::vector<pFlow::real> pFlow::sphereDEMSystem::shapeDiameters() const
+{
+    return spheres_->boundingDiameter().vectorField();
+}
+
+pFlow::span<pFlow::real> pFlow::sphereDEMSystem::diameter()
 {	
 	return span<real>(diameterHost_.data(), diameterHost_.size());
 }

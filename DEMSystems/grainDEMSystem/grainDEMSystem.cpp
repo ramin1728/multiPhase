@@ -168,8 +168,12 @@ pFlow::span<pFlow::uint32> pFlow::grainDEMSystem::particleId()
 	return span<uint32>(particleIdHost_.data(), particleIdHost_.size());
 }
 
+std::vector<pFlow::real> pFlow::grainDEMSystem::shapeDiameters() const
+{
+    return grains_->boundingDiameter().vectorField();
+}
 
-pFlow::span<pFlow::real> pFlow::grainDEMSystem::diameter() 
+pFlow::span<pFlow::real> pFlow::grainDEMSystem::diameter()
 {	
 	return span<real>(diameterHost_.data(), diameterHost_.size());
 }
