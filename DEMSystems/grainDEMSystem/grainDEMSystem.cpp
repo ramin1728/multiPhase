@@ -185,7 +185,7 @@ pFlow::span<pFlow::real> pFlow::grainDEMSystem::courseGrainFactor()
 
 pFlow::span<pFlow::realx3> pFlow::grainDEMSystem::acceleration()
 {
-    return span<realx3>(nullptr, 0);
+    return span<realx3>(accelerationHost_.data(), accelerationHost_.size());
 }
 
 pFlow::span<pFlow::realx3> pFlow::grainDEMSystem::velocity()  
@@ -248,6 +248,7 @@ bool pFlow::grainDEMSystem::beforeIteration()
 	if(requireRVel_)
 		rVelocityHost_ = std::as_const(particles_()).rVelocity().hostView();
 	
+    accelerationHost_ = particles_->acceleration().hostView();
 
 	return true;
 }

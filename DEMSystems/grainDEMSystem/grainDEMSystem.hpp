@@ -69,6 +69,8 @@ protected:
 
 	ViewType1D<realx3, HostSpace> 	rVelocityHost_;
 
+    ViewType1D<realx3, HostSpace> 	accelerationHost_;
+
 
 //  protected member functions
 	auto& Property()
