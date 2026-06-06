@@ -170,7 +170,12 @@ pFlow::span<pFlow::uint32> pFlow::sphereDEMSystem::particleId()
     return span<uint32>();
 }
 
-pFlow::span<pFlow::real> pFlow::sphereDEMSystem::diameter() 
+std::vector<pFlow::real> pFlow::sphereDEMSystem::shapeDiameters() const
+{
+    return spheres_->boundingDiameter().vectorField();
+}
+
+pFlow::span<pFlow::real> pFlow::sphereDEMSystem::diameter()
 {	
 	return span<real>(diameterHost_.data(), diameterHost_.size());
 }
@@ -182,7 +187,7 @@ pFlow::span<pFlow::real> pFlow::sphereDEMSystem::courseGrainFactor()
 
 pFlow::span<pFlow::realx3> pFlow::sphereDEMSystem::acceleration()
 {
-    return span<realx3>(nullptr, 0);
+    return span<realx3>(accelerationHost_.data(), accelerationHost_.size());
 }
 
 pFlow::span<pFlow::realx3> pFlow::sphereDEMSystem::velocity()  
@@ -244,8 +249,9 @@ bool pFlow::sphereDEMSystem::beforeIteration()
 
 	if(requireRVel_)
 		rVelocityHost_ = std::as_const(particles_()).rVelocity().hostView();
-	
 
+    accelerationHost_ = particles_->acceleration().hostView();
+	
 	return true;
 }
 

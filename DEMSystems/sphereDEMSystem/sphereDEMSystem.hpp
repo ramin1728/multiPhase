@@ -69,6 +69,8 @@ protected:
 
 	ViewType1D<realx3, HostSpace> 	rVelocityHost_;
 
+    ViewType1D<realx3, HostSpace>   accelerationHost_;
+
 
 //  protected member functions
 	auto& Property()
@@ -125,6 +127,9 @@ public:
 	span<const int32> parIndexInDomain(int32 di)const override;
 
 	span<uint32> particleId() override;
+
+    /// return the largest diameter of avaiable shapes
+    std::vector<real> shapeDiameters()const override;
 
 	span<real> diameter() override;
 

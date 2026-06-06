@@ -120,6 +120,10 @@ public:
 	virtual 
 	span<const int32> parIndexInDomain(int32 domIndx)const = 0;
 
+    /// return the largest diameter of avaiable shapes
+    virtual 
+    std::vector<real> shapeDiameters()const = 0;
+
 	virtual
 	span<real> diameter() = 0;
 	
